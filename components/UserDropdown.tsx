@@ -60,7 +60,15 @@ const UserDropdown = () => {
             </div>
           </DropdownMenuLabel>
         </DropdownMenuGroup>
+
         <DropdownMenuSeparator className="bg-gray-600" />
+
+        <nav className="sm:hidden">
+          <NavItems />
+        </nav>
+
+        <DropdownMenuSeparator className="bg-gray-600 sm:hidden" />
+
         <DropdownMenuItem
           onClick={handleSignOut}
           className="cursor-pointer text-gray-100 text-md font-medium focus:bg-transparent focus:text-yellow-500 transition-colors"
@@ -68,11 +76,6 @@ const UserDropdown = () => {
           <LogOut className="w-4 h-4 mr-2 hidden sm:block" />
           Sign Out
         </DropdownMenuItem>
-
-        <DropdownMenuSeparator className="hidden sm:block bg-gray-600 my-2" />
-        <nav className="sm:hidden">
-          <NavItems />
-        </nav>
       </DropdownMenuContent>
     </DropdownMenu>
   );
