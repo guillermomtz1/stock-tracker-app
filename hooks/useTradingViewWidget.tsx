@@ -4,7 +4,7 @@ import React, { useEffect, useRef, memo } from "react";
 const useTradingViewWidget = (
   scriptUrl: string,
   config: Record<string, unknown>,
-  height: 600,
+  height: number = 600,
 ) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -16,7 +16,7 @@ const useTradingViewWidget = (
     const script = document.createElement("script");
     script.src = scriptUrl;
     script.async = true;
-    script.innerHTML = JSON.stringify(config);
+    script.textContent = JSON.stringify(config);
 
     containerRef.current.appendChild(script);
     containerRef.current.dataset.loaded = "true";
@@ -27,7 +27,7 @@ const useTradingViewWidget = (
         delete containerRef.current.dataset.loaded;
       }
     };
-  }, [scriptUrl, config, height]);
+  }, [scriptUrl, JSON.stringify(config), height]);
 
   return containerRef;
 };
