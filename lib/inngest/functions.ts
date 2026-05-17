@@ -2,6 +2,7 @@ import { eventType } from "inngest";
 import { z } from "zod";
 import { inngest } from "./client";
 import { PERSONALIZED_WELCOME_EMAIL_PROMPT } from "./prompts";
+import { sendWelcomeEmail } from "../nodemailer";
 
 const userCreated = eventType("auth.user.created", {
   schema: z.object({
@@ -45,6 +46,11 @@ export const sendingWelcomeEmail = inngest.createFunction(
         (part && "text" in part ? part.text : null) || "Thanks for joining!";
 
       //! SENDING EMAIL LOGIC
+      return await sendWelcomeEmail({
+        email: data.user.email,
+        name: data.user.name,
+        intro: introText,
+      });
 
       return {
         success: true,

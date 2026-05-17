@@ -1,0 +1,4 @@
+{"sessionId":"ced569","location":"lib/auth.ts:getAuth-entry","message":"getAuth called - checking env vars","data":{"MONGODB_URI_defined":true,"MONGODB_URI_prefix":"mongodb+srv://jgm:cojU0rugnfpL"},"timestamp":1779015290566,"hypothesisId":"A"}
+{"sessionId":"ced569","location":"lib/auth.ts:after-connectToDatabase","message":"connectToDatabase succeeded","data":{"connectionState":1},"timestamp":1779015291584,"hypothesisId":"B"}
+{"sessionId":"ced569","location":"lib/auth.ts:before-betterAuth","message":"db obtained, creating betterAuth instance","data":{"dbName":"test"},"timestamp":1779015291585,"hypothesisId":"C,D"}
+{"sessionId":"ced569","location":"auth.actions.ts:signUpWithEmail-entry","message":"signUpWithEmail called","data":{"auth_defined":true,"email_provided":true},"timestamp":1779015291595,"hypothesisId":"D"}

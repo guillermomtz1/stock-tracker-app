@@ -4,8 +4,14 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import InputField from "@/components/forms/inputField";
 import FooterLink from "@/components/forms/footerLink";
+import { Toaster } from "@/components/ui/sonner";
+import { toast } from "sonner";
+import { signUpWithEmail } from "@/lib/actions/auth.actions";
+import { useRouter } from "next/navigation";
 
 const SignUp = () => {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -25,12 +31,16 @@ const SignUp = () => {
   }); // react-hook-form hook to manage form state and validation
 
   const onSubmit = async (data: SignUpFormData) => {
-    try {
-      console.log("Signing up with data:", data);
-    } catch (e) {
-      console.error(e);
+    const result = await signUpWithEmail(data);
+    if (result.success) {
+      router.push("/");
+    } else {
+      toast.error("Sign up failed", {
+        description: result.error ?? "An unknown error occurred",
+      });
     }
   };
+
   return (
     <>
       <h1 className="form-title text-center">Creat an account</h1>
